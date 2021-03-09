@@ -86,7 +86,8 @@ STATUS io_VariableWriteString(const char* format, va_list args)
 STATUS io_WriteChar(const char ch)
 {
     if (!initialized)
-        return ERROR;
+        return ret;
+
     return ioDriver_WriteChar(ch);
 }
 
@@ -111,8 +112,7 @@ STATUS io_WriteCharArray(const char* charArray, uint32 n)
 /* Add callback function to message received event */
 STATUS io_AddMessageReceivedCallback(CallbackFunction callback)
 {
-    if (!initialized)
-        return ERROR;
+    assert(initialized);
 
     return cb_AddCallback(msgReceivedHandle, callback);
 }
@@ -120,8 +120,7 @@ STATUS io_AddMessageReceivedCallback(CallbackFunction callback)
 /* Delete callback function to message received event */
 STATUS io_DeleteMessageReceivedCallback(CallbackFunction callback)
 {
-    if (!initialized)
-        return ERROR;
+    assert(initialized);
 
     return cb_DeleteCallback(msgReceivedHandle, callback);
 }
@@ -129,8 +128,7 @@ STATUS io_DeleteMessageReceivedCallback(CallbackFunction callback)
 /* Read input. If message is ready, will trigger message received event */
 STATUS io_ReadInput(void)
 {
-    if (!initialized)
-        return ERROR;
+    assert(initialized);
 
     // Initialize variables
     char newChar, overflowed = FALSE;

@@ -80,8 +80,6 @@ STATUS ioDriver_GetChar(char* ch)
         *ch = getch();
         if (*ch == 'z')
             reset_terminal_mode();
-        if (*ch == EOF)
-            printf("Hello World\r\n");
 
         ret = SUCCESS;
     }
