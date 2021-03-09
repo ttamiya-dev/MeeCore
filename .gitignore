@@ -1,0 +1,6 @@
+tags
+Main.c
+*.exe
+*.gch
+*.o
+MeeCore
